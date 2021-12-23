@@ -4,9 +4,10 @@ window.onload = () => {
 
     let slider = document.querySelector(".slider");
     let sliderInner = document.querySelector(".slider-inner");
-    let sliderList = document.querySelectorAll(".slider-item");
+    let sliderItemList = document.querySelectorAll(".slider-item");
     let down = false;
     let downPoint = {};
+    let currentItem = { index:0, pos:50};
     let defaultValue = 50;
     let centerValue = defaultValue/2;
     let lastSliderInnerPos = 50;
@@ -31,12 +32,40 @@ window.onload = () => {
         }
     });
 
+    slider.addEventListener("mouseup", function (e) {
+        down = false;
+    
+        sliderMoveTo(e.x,downPoint.x);
+        
+        a.innerHTML = `x ${defaultValue + (e.x - downPoint.x)}<br>
+        inner ${sliderInner.offsetLeft} <br>
+        slider ${slider.offsetLeft} <br>
+        last ${lastSliderInnerPos} <br>
+        inner - slider ${sliderInner.offsetLeft - slider.offsetLeft} <br>`;
+
+    });
+
+    slider.addEventListener("mouseleave", function (e) {
+        down = false;
+        sliderMoveTo(e.x,downPoint.x);
+    });
+
+    function isLast() {
+        if(index < 0 || index > sliderItemList.length-1) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     function sliderMove(pos) {
         sliderInner.style.left = `${pos}px`;
     }
 
     function sliderMoveTo(currentX, startX) {
         let pos = 0;
+
         if(defaultValue - centerValue > defaultValue + (currentX - startX)) {
             pos = lastSliderInnerPos - defaultValue;
             index++;
@@ -48,39 +77,16 @@ window.onload = () => {
         else {
             pos = lastSliderInnerPos;
         }
+        if(isLast()) {
+            index = currentItem.index;
+            pos = currentItem.pos;
+        }
+
         lastSliderInnerPos = pos;
+
+        (currentItem = {pos, index});
+        
         sliderInner.style.left = `${lastSliderInnerPos}px`;
     }
-    
-    slider.addEventListener("mouseup", function (e) {
-        down = false;
-    
-        sliderMoveTo(e.x,downPoint.x);
-        
-        // if(centerValue-defaultValue/2 > currentItemPos) {
-        //     lastSliderInnerPos -= defaultValue;
-        //     sliderInner.style.left = `${lastSliderInnerPos}px`;
-        //     index++;
-        // }
-        // else if(centerValue+defaultValue/2 < currentItemPos) {
-        //     //lastSliderInnerPos += defaultValue;
-        //     //sliderInner.style.left = `${lastSliderInnerPos}px`;
-        //     //index--;
-        // }
-        // else {
-        //     sliderInner.style.left = `${lastSliderInnerPos}px`;
-        // }
-
-        a.innerHTML = `x ${defaultValue + (e.x - downPoint.x)}<br>
-        inner ${sliderInner.offsetLeft} <br>
-        slider ${slider.offsetLeft} <br>
-        last ${lastSliderInnerPos} <br>
-        inner - slider ${sliderInner.offsetLeft - slider.offsetLeft} <br>`;
-
-    });
-
-    slider.addEventListener("mouseleave", function (e) {
-        down = false;
-    });
     
 }
