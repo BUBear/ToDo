@@ -12,8 +12,6 @@ class Slider {
         this.centerValue = this.defaultSize / 2;
         this.currentItem = { index: 0, pos: this.defaultSize };
         this.endSliderInnerPos = this.defaultSize;
-        this.index = 0;
-        this.pos = 0;
 
         sliderEl.addEventListener("mousedown", (e) => {
             this.moveState = true;
@@ -24,7 +22,7 @@ class Slider {
             e.preventDefault();
 
             if (this.moveState) {
-                this.sliderMove(this.lastSliderInnerPos + (e.x - this.currentPoint));
+                this.sliderMove(this.endSliderInnerPos + (e.x - this.currentPoint));
             }
         });
 
@@ -35,7 +33,7 @@ class Slider {
     }
 
     isLast() {
-        if (this.index < 0 || this.index > this.sliderItemList.length - 1) {
+        if (this.currentItem.index < 0 || this.currentItem.index > this.sliderItemList.length - 1) {
             return true;
         }
         else {
@@ -48,26 +46,26 @@ class Slider {
     }
 
     sliderMoveTo(currentX, startX) {
-        let temp = this.currentItem;
+        let temp = Object.assign({},this.currentItem);
 
-        if (this.defaultValue - this.centerValue > this.defaultValue + (currentX - startX)) {
-            this.currentItem.pos = this.lastSliderInnerPos - this.defaultValue;
+        if (this.defaultSize - this.centerValue > this.defaultSize + (currentX - startX)) {
+            this.currentItem.pos = this.endSliderInnerPos - this.defaultSize;
             this.currentItem.index++;
         }
-        else if (this.defaultValue + this.centerValue < this.defaultValue + (currentX - startX)) {
-            this.currentItem.pos = this.lastSliderInnerPos + this.defaultValue;
+        else if (this.defaultSize + this.centerValue < this.defaultSize + (currentX - startX)) {
+            this.currentItem.pos = this.endSliderInnerPos + this.defaultSize;
             this.currentItem.index--;
         }
         else {
-            this.currentItem.pos = this.lastSliderInnerPos;
+            this.currentItem.pos = this.endSliderInnerPos;
         }
         if (this.isLast()) {
             this.currentItem = temp;
         }
 
-        this.lastSliderInnerPos = this.currentItem.pos;
+        this.endSliderInnerPos = this.currentItem.pos;
 
-        this.sliderMove(this.lastSliderInnerPos);
+        this.sliderMove(this.endSliderInnerPos);
     }
 }
 
