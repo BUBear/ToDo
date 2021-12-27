@@ -29,7 +29,24 @@ class Slider {
         sliderEl.addEventListener("mouseup", (e) => {
             this.moveState = false;
             this.sliderMoveTo(e.x, this.currentPoint); 
+            this.itemUpdate(this.currentItem.index);
         });
+    }
+
+    itemUpdate(index) {
+        if(index == 0) {
+            this.sliderItemList[index+1].classList.remove("active");
+            this.sliderItemList[index].classList.add("active");
+        }
+        else if(index == this.sliderItemList.length - 1) {
+            this.sliderItemList[index-1].classList.remove("active");
+            this.sliderItemList[index].classList.add("active");
+        }
+        else {
+            this.sliderItemList[index-1].classList.remove("active");
+            this.sliderItemList[index+1].classList.remove("active");
+            this.sliderItemList[index].classList.add("active");
+        }
     }
 
     isLast() {

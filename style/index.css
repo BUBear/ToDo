@@ -1,18 +1,26 @@
 .header {
     height: 300px;
-    background-color: skyblue;
+    background-color: #0F1426;
+}
+
+.header .header-main {
+    font-size: 60px;
+    text-align: center;
+    padding-top: 80px;
+    color: #D9D9D9;
 }
 
 .header .header-month {
-    padding-top: 190px;
-    font-size: 30px;
+    padding-top: 50px;
+    font-size: 45px;
     text-align: center;
+    color: #D9D9D9;
 }
 
 .header .header-day {
     height: 70px;
     text-align: center;
-    background-color: skyblue;
+    background-color: #0F1426;
 }
 
 .slider {
@@ -20,7 +28,6 @@
     height: 68px;
     margin: auto;
     overflow: hidden;
-    border: 1px solid;
 }
 
 .slider-inner {
@@ -28,8 +35,7 @@
     padding: 0px;
     position: relative;
     width: 300px;
-    height: 70px;
-    line-height: 70px;
+    height: 50px;
     left: 50px;
     transition: all 0.1s ease-out;
     white-space: nowrap;
@@ -41,12 +47,14 @@
     height: 50px;
     line-height: 50px;
     display: inline-block;
-    background-color: white;
+    background-color: #D9D9D9;
+    border-radius: 20%;
     vertical-align: middle;
-    font-size: 16px;
-    border: 1px solid;
+    font-size: 20px;
+    color: black;
 }
 
-.slider-inner .slider-item.active {
-
+.slider-inner .active {
+    font-size: 30px;
+    color: #235B8C;
 }
