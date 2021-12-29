@@ -1,5 +1,4 @@
 .header {
-    height: 300px;
     background-color: #0F1426;
 }
 
@@ -25,14 +24,14 @@
 
 .slider {
     width: 148px;
-    height: 68px;
+    height: 70px;
     margin: auto;
     overflow: hidden;
 }
 
 .slider-inner {
     list-style: none;
-    padding: 0px;
+    padding: 10px 0PX;
     position: relative;
     width: 300px;
     height: 50px;
@@ -58,3 +57,56 @@
     font-size: 30px;
     color: #235B8C;
 }
+
+/* content */
+
+/* content-todolist */
+
+.todo-list {
+    list-style: none;
+    padding: 0px;
+    margin: 0px auto;
+    font-size: 0px;
+}
+
+.todo-list-item {
+    width: 250px;
+    background-color: #D9D9D9;
+    border-radius: 5px;
+    margin: 10px 5px;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 16px;
+}
+
+.todo-list-item .item-title {
+    color: #0F1426;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-bottom: 2px solid #235B8C;
+}
+
+.todo-list-item .item-content {
+    color: #0F1426;
+    padding: 5px 10px;
+    word-wrap: break-word;
+    font-weight: bold;
+}
+
+.todo-list-item .item-tool {
+    padding: 5px 5px;
+    font-size: 0px;
+}
+
+.todo-list-item .item-tool i {
+    width: 48px;
+    height: 32px;
+    text-align: center;
+    line-height: 32px;
+    font-size: 16px;
+    display: inline-block;
+}
+
+.todo-list-item .item-tool i:hover {
+    color: #235B8C;
+} 
