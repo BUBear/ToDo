@@ -1,6 +1,7 @@
 `use strict`;
 
 import { Slider } from "./slider.js"
+import { DoList } from "./list.js"
 
 let todoList = null;
 
@@ -15,6 +16,9 @@ window.onload = () => {
     sizeUpdate();
 
     window.addEventListener("resize",sizeUpdate);
+
+    let doList = new DoList();
+    doList.month = 1;
 }
 
 function sizeUpdate() {

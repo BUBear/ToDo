@@ -96,6 +96,12 @@
 .todo-list-item .item-tool {
     padding: 5px 5px;
     font-size: 0px;
+    text-align: center;
+    visibility: hidden;
+}
+
+.todo-list-item:hover > .item-tool {
+    visibility: visible;
 }
 
 .todo-list-item .item-tool i {
@@ -110,3 +116,14 @@
 .todo-list-item .item-tool i:hover {
     color: #235B8C;
 } 
+
+/* modal */
+
+.modal {
+    background-color: #D9D9D9;
+    width: 300px;
+}
+
+.modal .modal-title {
+    padding: 5px;
+}
