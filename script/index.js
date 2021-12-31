@@ -13,9 +13,9 @@ window.onload = () => {
 
     todoList = document.querySelector(".todo-list");
 
-    sizeUpdate();
+    //sizeUpdate();
 
-    window.addEventListener("resize",sizeUpdate);
+    //window.addEventListener("resize",sizeUpdate);
 
     let doList = new DoList();
     doList.month = 1;
