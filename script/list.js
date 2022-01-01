@@ -9,9 +9,9 @@ export class ToDo
         return this.toDoList[index];
     }
 
-    setItem(index,data) {
+    setItem(data) {
         if(data instanceof ToDoList) {
-            this.toDoList[index] = data;
+            this.toDoList[this.toDoList.length - 1] = data;
         }
         else {
             throw Error("ToDoList 타입이 아닙니다.")
