@@ -1,7 +1,7 @@
 `use strict`;
 
 import { Slider } from "./slider.js"
-import { DoList } from "./list.js"
+import { ToDo, ToDoList } from "./list.js"
 
 let todoList = null;
 
@@ -13,12 +13,23 @@ window.onload = () => {
 
     todoList = document.querySelector(".todo-list");
 
-    //sizeUpdate();
+    const toDo = new ToDo(document.querySelector(".todo-list"),window.localStorage);
 
-    //window.addEventListener("resize",sizeUpdate);
+    for (let index = 0; index < 10; index++) {
+        let doList = new ToDoList();
+        doList.month = index+1;
+        doList.day = index+1;
+        doList.title = "테스트";
+        doList.content = "테스트" + (index+1);
+    
+        toDo.addItem(doList);
+    }
+    toDo.update(1,1);
+    toDo.listSave();
 
-    let doList = new DoList();
-    doList.month = 1;
+    sizeUpdate();
+
+    window.addEventListener("resize",sizeUpdate);
 }
 
 function sizeUpdate() {
