@@ -18,7 +18,6 @@
 
 .header .header-day {
     height: 70px;
-    text-align: center;
     background-color: #0F1426;
 }
 
@@ -26,7 +25,12 @@
     width: 148px;
     height: 70px;
     margin: auto;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,0%);
+    display: inline-block;
     overflow: hidden;
+    text-align: center;
 }
 
 .slider-inner {
@@ -120,10 +124,67 @@
 /* modal */
 
 .modal {
-    background-color: #D9D9D9;
-    width: 300px;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    position: fixed;
+    z-index: 1;
 }
 
-.modal .modal-title {
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.modal .modal-back {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 40%;
+    z-index: 1;
+}
+
+.modal .modal-inner {
+    background-color: #D9D9D9;
+    width: 300px;
+    border-radius: 5px;
+    margin: 0px auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 2;
+    position: absolute;
+    box-shadow: 5px 5px 10px#0F1426;
+}
+
+.modal .modal-inner .modal-title {
     padding: 5px;
+    border-bottom: 2px solid #235B8C;
+}
+
+.modal .modal-inner .modal-body {
+    min-height: 100px;
+    word-wrap: break-word;
+    padding: 5px;
+}
+
+.modal .modal-inner .modal-footer {
+    min-height: 30px;
+    padding: 5px;
+    text-align: center;
+}
+
+.modal .modal-inner .modal-footer i {
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    line-height: 32px;
+    margin: 0px 5px;
+}
+
+.modal .modal-inner .modal-footer i:hover {
+    color: #235B8C;
 }

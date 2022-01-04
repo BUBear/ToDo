@@ -3,15 +3,7 @@ export class ToDo
     constructor(element,stroage) {
         this.element = element;
         this.local = stroage;
-        this.toDoList = {
-            month: undefined, item: {
-                day:undefined, list: {
-                    title:title,
-                    content:content,
-                    date:date
-                }
-            }
-        }
+        this.toDoList = [];
     }
 
     getItem(index) {
@@ -21,11 +13,20 @@ export class ToDo
     addItem(doList) {
         if(doList instanceof ToDoList) {
             this.toDoList[this.toDoList.length] = doList;
-            this.createItem(doList);
         }
         else {
             throw Error("ToDoList 타입이 아닙니다.")
         }
+    }
+
+    update(month, day) {
+        this.resetItme();
+
+        this.toDoList.forEach(v => {
+            if(v.month == month && v.day == day) {
+                this.createItem(v);
+            }
+        })
     }
 
     createItem(doList) {
@@ -58,6 +59,13 @@ export class ToDo
         itemE.appendChild(toolE);
 
         this.element.appendChild(itemE);
+    }
+
+    resetItme() {
+        let elements = this.element.querySelectorAll("todo-list-item");
+        elements.forEach(el => {
+            el.remove();
+        })
     }
 
     listLoad() {
