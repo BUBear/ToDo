@@ -23,11 +23,6 @@
             12
         </div>
         <div class="header-day">
-            <div style="width: 100px;
-            height: 70px;
-            display: inline-block;">
-
-            </div>
             <div class="slider">
                 <div class="slider-inner">
                     <div class="slider-item active">1</div>
@@ -44,6 +39,7 @@
             </div>
         </div>
     </header>
+
     <div class="content">
         <ul class="todo-list">
             <li class="todo-list-item">
@@ -70,129 +66,21 @@
                     <i class="far fa-trash-alt"></i>
                 </div>
             </li>
-            <li class="todo-list-item">
-                <div class="item-title">text</div>
-                <div class="item-content">a</div>
-                <div class="item-tool">
-                    <i class="far fa-edit"></i>
-                    <i class="far fa-trash-alt"></i>
+            <li class="todo-list-item-add">
+                <div class="item-add">
+                    <i class="fas fa-3x fa-plus"></i>
                 </div>
             </li>
-            <li class="todo-list-item">
-                <div class="item-title">text</div>
-                <div class="item-content">a</div>
-                <div class="item-tool">
-                    <i class="far fa-edit"></i>
-                    <i class="far fa-trash-alt"></i>
-                </div>
-            </li>
-            <li class="todo-list-item">
-                <div class="item-title">text</div>
-                <div class="item-content">a</div>
-                <div class="item-tool">
-                    <i class="far fa-edit"></i>
-                    <i class="far fa-trash-alt"></i>
-                </div>
-            </li>
-            <li class="todo-list-item">
-                <div class="item-title">text</div>
-                <div class="item-content">a</div>
-                <div class="item-tool">
-                    <i class="far fa-edit"></i>
-                    <i class="far fa-trash-alt"></i>
-                </div>
-            </li>
-            <li class="todo-list-item">
-                <div class="item-title">text</div>
-                <div class="item-content">a</div>
-                <div class="item-tool">
-                    <i class="far fa-edit"></i>
-                    <i class="far fa-trash-alt"></i>
-                </div>
-            </li>
-            <li class="todo-list-item">
-                <div class="item-title">text</div>
-                <div class="item-content">a</div>
-                <div class="item-tool">
-                    <i class="far fa-edit"></i>
-                    <i class="far fa-trash-alt"></i>
-                </div>
-            </li>
-            <li class="todo-list-item">
-                <div class="item-title">text</div>
-                <div class="item-content">a</div>
-                <div class="item-tool">
-                    <i class="far fa-edit"></i>
-                    <i class="far fa-trash-alt"></i>
-                </div>
-            </li>
-            <li class="todo-list-item">
-                <div class="item-title">text</div>
-                <div class="item-content">a</div>
-                <div class="item-tool">
-                    <i class="far fa-edit"></i>
-                    <i class="far fa-trash-alt"></i>
-                </div>
-            </li>
-            <li class="todo-list-item">
-                <div class="item-title">text</div>
-                <div class="item-content">a</div>
-                <div class="item-tool">
-                    <i class="far fa-edit"></i>
-                    <i class="far fa-trash-alt"></i>
-                </div>
-            </li>
-            <li class="todo-list-item">
-                <div class="item-title">text</div>
-                <div class="item-content">1231231231254a65fdsdfsdlkgfl;djgdfl;'jgldfgdlfgkdflkgl;dfkgdf</div>
-                <div class="item-tool">
-                    <i class="far fa-edit"></i>
-                    <i class="far fa-trash-alt"></i>
-                </div>
-            </li>
-            <li class="todo-list-item">
-                <div class="item-title">text</div>
-                <div class="item-content">bsbdsdasdasdasdasd</div>
-                <div class="item-tool">
-                    <i class="far fa-edit"></i>
-                    <i class="far fa-trash-alt"></i>
-                </div>
-            </li>
-            <li class="todo-list-item">
-                <div class="item-title">text</div>
-                <div class="item-content">bsbdsdasdasdasdasd
-                    bsbdsdasdasdasdasd
-                    bsbdsdasdasdasdasd
-                    bsbdsdasdasdasdasd
-                    bsbdsdasdasdasdasd
-                    bsbdsdasdasdasdasd
-                    bsbdsdasdasdasdasd
-                    bsbdsdasdasdasdasd
-                    bsbdsdasdasdasdasd
-                    bsbdsdasdasdasdasd
-                    bsbdsdasdasdasdasd
-                </div>
-                <div class="item-tool">
-                    <i class="far fa-edit"></i>
-                    <i class="far fa-trash-alt"></i>
-                </div>
-            </li>
-            <li class="todo-list-item">
-                <div class="item-title">text</div>
-                <div class="item-content">bsbdsdasdasdasdasd</div>
-                <div class="item-tool">
-                    <i class="far fa-edit"></i>
-                    <i class="far fa-trash-alt"></i>
-                </div>
-            </li>            
         </ul>
     </div>
 
-    <div class="modal hide">
+    <div id="listaddModal" class="modal hide">
         <div class="modal-back"></div>
         <div class="modal-inner">
-            <div class="modal-title">모달 테스트</div>
-            <div class="modal-body">테스트</div>
+            <div class="modal-title">추가하기</div>
+            <div class="modal-body">
+                <div class="modal-textarea" contenteditable="true">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+            </div>
             <div class="modal-footer">
                 <i class="fas fa-lg fa-times"></i>
                 <i class="fas fa-lg fa-check"></i>

@@ -55,3 +55,14 @@ function sizeUpdate() {
 
     todoList.style.width = `${result}px`
 }
+
+function listAddModal() {
+    let modal = createModal();
+    let body = modal.getElementsByClassName(".modal-body");
+    let textarea = document.createElement("div");
+    textarea.contentEditable = true;
+
+    body.appendChild(textarea);
+
+    return modal;
+}

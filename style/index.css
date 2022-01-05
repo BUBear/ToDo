@@ -119,7 +119,27 @@
 
 .todo-list-item .item-tool i:hover {
     color: #235B8C;
-} 
+}
+
+.todo-list-item-add {
+    width: 250px;
+    background-color: #d9d9d970;
+    border-radius: 5px;
+    margin: 10px 5px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+    font-size: 16px;
+}
+
+.todo-list-item-add .item-add {
+    padding: 51px 104px;
+    color: #000000;
+}
+
+.todo-list-item-add .item-add:hover{
+    color: #235B8C;
+}
 
 /* modal */
 
