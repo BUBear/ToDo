@@ -1,44 +1,45 @@
-`use strict`;
-
 import { Slider } from "./slider.js";
 import { ToDo, ToDoList } from "./list.js";
-import  { Modal } from "./modal.js";
+import  { Modal, AddModal } from "./modal.js";
 
 let todoList = null;
 
 window.onload = () => {
 
-    let slider = new Slider(document.querySelector(".slider"),
-    document.querySelector(".slider-inner"),
-    document.querySelectorAll(".slider-item"));
-
-    todoList = document.querySelector(".todo-list");
-
-    // const toDo = new ToDo(document.querySelector(".todo-list"),window.localStorage);
-
-    // for (let index = 0; index < 10; index++) {
-    //     let doList = new ToDoList();
-    //     doList.month = index+1;
-    //     doList.day = index+1;
-    //     doList.title = "테스트";
-    //     doList.content = "테스트" + (index+1);
-    
-    //     toDo.addItem(doList);
-    // }
-    // toDo.update(1,1);
-    // toDo.listSave();
-
-    sizeUpdate();
-
-    window.addEventListener("resize",sizeUpdate);
-
-    let el = document.querySelector(".todo-list-item-add");
-    el.addEventListener("click",()=>{
-        let modals = document.querySelectorAll(".modal");
-        let modal = new Modal(modals,"show","hide");
-        modal.show("#listaddModal");
-    })
 }
+
+let slider = new Slider(document.querySelector(".slider"),
+document.querySelector(".slider-inner"),
+document.querySelectorAll(".slider-item"));
+
+todoList = document.querySelector(".todo-list");
+
+// const toDo = new ToDo(document.querySelector(".todo-list"),window.localStorage);
+
+// for (let index = 0; index < 10; index++) {
+//     let doList = new ToDoList();
+//     doList.month = index+1;
+//     doList.day = index+1;
+//     doList.title = "테스트";
+//     doList.content = "테스트" + (index+1);
+
+//     toDo.addItem(doList);
+// }
+// toDo.update(1,1);
+// toDo.listSave();
+
+sizeUpdate();
+
+window.addEventListener("resize",sizeUpdate);
+
+let el = document.querySelector(".todo-list-item-add");
+el.addEventListener("click",() => {
+    let modal = new Modal("테스트",createAddModal());
+    modal.show();
+    modal.addAcceptEvent("", ["a"], (e) => {
+        console.log(e);
+    });
+});
 
 function sizeUpdate() {
     let width = 250;
@@ -53,16 +54,13 @@ function sizeUpdate() {
         }
     }
 
-    todoList.style.width = `${result}px`
+    todoList.style.width = `${result}px`;
 }
 
-function listAddModal() {
-    let modal = createModal();
-    let body = modal.getElementsByClassName(".modal-body");
+function createAddModal() {
     let textarea = document.createElement("div");
     textarea.contentEditable = true;
+    textarea.id = "a";
 
-    body.appendChild(textarea);
-
-    return modal;
+    return textarea;
 }
