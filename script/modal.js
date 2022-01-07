@@ -97,19 +97,3 @@ export class Modal {
         return elements;
     }
 }
-
-export class AddModal extends Modal {
-    constructor(title) {
-        super(title);
-        this.createAddModal();
-    }
-
-    createAddModal() {
-        let body = this.modal.getElementsByClassName("modal-body")[0];
-        let textarea = document.createElement("div");
-        textarea.contentEditable = true;
-        textarea.id = "a";
-
-        body.appendChild(textarea);
-    }
-}

@@ -169,7 +169,7 @@
 
 .modal .modal-inner {
     background-color: #D9D9D9;
-    width: 300px;
+    width: 500px;
     border-radius: 5px;
     margin: 0px auto;
     top: 50%;
@@ -207,4 +207,23 @@
 
 .modal .modal-inner .modal-footer i:hover {
     color: #235B8C;
+}
+
+.modal label {
+    display: block;
+}
+
+.modal textarea {
+    min-width: 490px;
+    min-height: 78px;
+    resize: none;
+    border: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: transparent;
+    outline: none;
+}
+
+.modal textarea:focus {
+    border-bottom: 2px solid #235B8C;
 }
