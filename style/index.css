@@ -215,12 +215,11 @@
 
 .modal textarea {
     min-width: 490px;
-    min-height: 78px;
     resize: none;
     border: 0px;
     padding: 0px;
-    overflow: hidden;
     background-color: transparent;
+    border-bottom: 2px solid #0F1426;
     outline: none;
 }
 

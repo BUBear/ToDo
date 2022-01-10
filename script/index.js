@@ -16,57 +16,77 @@ todoList = document.querySelector(".todo-list");
 
 const toDo = new ToDo(document.querySelector(".todo-list"),window.localStorage);
 
-for (let index = 0; index < 10; index++) {
-    let doList = new ToDoList();
-    doList.month = index+1;
-    doList.day = index+1;
-    doList.title = "테스트";
-    doList.content = "테스트" + (index+1);
-
-    toDo.addItem(doList);
+try {
+    toDo.listLoad();
+    toDo.update(1,1);
+    sizeUpdate();
+    
+    window.addEventListener("resize",sizeUpdate);
+    
+    elementAddEvent();
 }
-toDo.update(1,1);
-toDo.listSave();
+catch (e) {
+    console.log(e.message);
+    //
+}
 
-sizeUpdate();
 
-window.addEventListener("resize",sizeUpdate);
+function elementAddEvent() {
+    let list = todoList.getElementsByTagName("li");
+    for (let i = 0; i < list.length; i++) {
+        let element = list[i];
 
-let list = todoList.getElementsByTagName("li");
-for (let i = 0; i<list.length-1; i++) {
-    let element = list[i];
+        switch (element.className) {
+            case "todo-list-item": {
+                let temp = element.getElementsByClassName("item-tool")[0].getElementsByTagName("i");
+                let edit = temp.item(0);
+                let del = temp.item(1);
+    
+                let modal = new Modal("변경", createEditModal(toDo.getItem(i).content));
+    
+                edit.addEventListener("click", () => {
+                    modal.show();
+                    modal.addAcceptEvent("", ["content"], (e) => {
+                        toDo.itemUpdate(i, e.content.value);
+                        toDo.update(1, 1);
+                        elementAddEvent();
+                        modal.close();
+                    });
+                });
 
-    if(element.className == "todo-list-item") {
-        let temp = element.getElementsByClassName("item-tool")[0].getElementsByTagName("i");
-        let edit = temp.item(0); 
-        let del = temp.item(1);
+                del.addEventListener("click", () => {
+                    toDo.removeItem(i);
+                    toDo.update(1, 1);
+                    elementAddEvent();
+                    modal.close();
+                });
+                break;
+            }
+            case "todo-list-item-add": {
+                let el = document.querySelector(".todo-list-item-add");
+                el.addEventListener("click",() => {
+                    // 테스트
+                    let modal = new Modal("추가",createAddModal());
+                    modal.show();
+                    modal.addAcceptEvent("", ["content"], (e) => {
+                        let doList = new ToDoList();
+                        doList.month = 1;
+                        doList.day = 1;
+                        doList.title = "테스트";
+                        doList.content = e.content.value;
 
-        edit.addEventListener("click", () => {
-            let modal = new Modal("변경",createEditModal(toDo.getItem(i).content));
-            modal.show();
-            modal.addAcceptEvent("", ["content"], (e) => {
-                toDo.itemUpdate(i,e.content.value);
-                toDo.update(1,1);
-            });
-        });
+                        toDo.addItem(doList);
+                        toDo.update(1, 1);
+                        elementAddEvent();
+                        modal.close();
+                    });
+                });
+                break;
+            }
 
-        del.addEventListener("click", () => {
-
-        });
+        }
     }
 }
-
-let el = document.querySelector(".todo-list-item-add");
-el.addEventListener("click",() => {
-
-    // 테스트
-
-    let modal = new Modal("추가",createAddModal());
-    modal.show();
-    modal.addAcceptEvent("", ["content"], (e) => {
-        console.log(e.content.value);
-    });
-});
 
 function sizeUpdate() {
     let width = 250;

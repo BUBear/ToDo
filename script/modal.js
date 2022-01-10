@@ -83,7 +83,9 @@ export class Modal {
         if(elementsId) {
             elements = this.getElements(elementsId);
         }
-        this.acceptElement.addEventListener(evnetName, event(elements));
+        this.acceptElement.addEventListener(evnetName, () => { 
+            event(elements);
+        });
     }
 
     getElements(ids) {

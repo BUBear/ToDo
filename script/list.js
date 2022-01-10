@@ -19,6 +19,14 @@ export class ToDo
         }
     }
 
+    removeItem(index) {
+        this.toDoList.splice(index,1);
+    }
+
+    itemUpdate(index, content) {
+        this.getItem(index).content = content;
+    }
+
     update(month, day) {
         this.resetItme();
 
@@ -27,16 +35,18 @@ export class ToDo
                 this.createItem(v);
             }
         })
+
+        this.createAddElement();
     }
 
     createItem(doList) {
         let itemE = document.createElement("li");
         itemE.classList.add("todo-list-item");
 
-        let titleE = document.createElement("div");
-        titleE.classList.add("item-title");
-        titleE.textContent = doList.title;
-        itemE.appendChild(titleE);
+        // let titleE = document.createElement("div");
+        // titleE.classList.add("item-title");
+        // titleE.textContent = doList.title;
+        // itemE.appendChild(titleE);
 
         let contentE = document.createElement("div");
         contentE.classList.add("item-content");
@@ -61,18 +71,39 @@ export class ToDo
         this.element.appendChild(itemE);
     }
 
+    createAddElement() {
+        let addListE = document.createElement("li");
+        addListE.className = "todo-list-item-add";
+        
+        let divE = document.createElement("div");
+        divE.className = "item-add";
+
+        let addE = document.createElement("i");
+        addE.className = "fas fa-3x fa-plus";
+
+        divE.appendChild(addE);
+
+        addListE.appendChild(divE);
+
+        this.element.appendChild(addListE);
+    }
+
     resetItme() {
-        let elements = this.element.querySelectorAll("todo-list-item");
-        elements.forEach(el => {
-            el.remove();
-        })
+        let elements = this.element.getElementsByTagName("li");
+        while(elements.length != 0) {
+            elements[0].remove();
+        }
     }
 
     listLoad() {
         let data = this.local.getItem("todolist");
-        let convertData = JSON.parse(data);
-
-        return convertData;
+        if(data != null) {
+            let convertData = JSON.parse(data);
+            this.toDoList = convertData;
+        }
+        else {
+            throw Error("저장된 리스트가 없습니다.")
+        }
     }
     
     listSave() {
