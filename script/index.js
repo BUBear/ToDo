@@ -16,6 +16,15 @@ todoList = document.querySelector(".todo-list");
 
 const toDo = new ToDo(document.querySelector(".todo-list"),window.localStorage);
 
+let doList = new ToDoList();
+doList.month = 1;
+doList.day = 1;
+doList.title = "테스트";
+doList.content = "테스트";
+
+toDo.addItem(doList);
+toDo.update(1, 1);
+
 try {
     toDo.listLoad();
     toDo.update(1,1);
@@ -23,13 +32,13 @@ try {
     
     window.addEventListener("resize",sizeUpdate);
     
-    elementAddEvent();
 }
 catch (e) {
     console.log(e.message);
     //
 }
 
+elementAddEvent();
 
 function elementAddEvent() {
     let list = todoList.getElementsByTagName("li");
