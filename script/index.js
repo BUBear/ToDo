@@ -8,9 +8,8 @@ window.onload = () => {
 
 }
 
-let slider = new Slider(document.querySelector(".slider"),
-document.querySelector(".slider-inner"),
-document.querySelectorAll(".slider-item"));
+let slider = new Slider();
+console.log(slider._index);
 
 todoList = document.querySelector(".todo-list");
 

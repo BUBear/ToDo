@@ -1,15 +1,38 @@
 export class Slider {
     constructor() {
-        this._slider;
-        this._sliderInner;
-        this._sliderItem = [];
-        this._inner = 0;
+        this._slider = document.querySelector(".slider");
+        this._sliderInner = document.querySelector(".slider-inner");
+        this._sliderItem = this._sliderInner.getElementsByTagName("div");
+        this._index = 0;
+        this._innerPos = 0;
         this._itemSize = 0;
+        this._currentMousePos = 0;
         this._state = "normal";
 
-        this._slider.addEnventListener("mousedown", () => {
-
+        this._slider.addEventListener("mousedown", (e) => {
+            this._state = "down";
+            this._currentMousePos = this._innerPos + e.x;
+            console.log(this._innerPos + " " + this._currentMousePos + " " + e.x + " " + (e.x-this._currentMousePos));
         });
+
+        this._slider.addEventListener("mousemove", (e) => {
+            e.preventDefault();
+            if(this._state == "down" || this._state == "move") {
+                this.sliderMove(this._innerPos + (e.x - this._currentMousePos));
+                this._state = "move";
+                console.log(this._innerPos + " " + this._currentMousePos + " " + e.x + " " + (e.x-this._currentMousePos));
+            }
+        });
+
+        this._slider.addEventListener("mouseup", (e) => {
+            this._state = "normal";
+            this._innerPos = e.x - this._currentMousePos;
+            console.log(this._innerPos + " " + this._currentMousePos + " " + e.x + " " + (e.x-this._currentMousePos));
+        });
+    }
+
+    sliderMove(pos) {
+        this._sliderInner.style.transform = `translateX(${pos}px)`;
     }
 }
 
