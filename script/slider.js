@@ -1,38 +1,84 @@
 export class Slider {
-    constructor() {
+    constructor(size) {
         this._slider = document.querySelector(".slider");
         this._sliderInner = document.querySelector(".slider-inner");
-        this._sliderItem = this._sliderInner.getElementsByTagName("div");
+        this._sliderItemList = this._sliderInner.getElementsByTagName("div");
         this._index = 0;
-        this._innerPos = 0;
-        this._itemSize = 0;
+        this._currentInnerPos = 0;
+        this._oldInnerPos = 0;
+        this._itemSize = 50;
+        this._innerSize = this._itemSize * (this._sliderItemList.length-1);
         this._currentMousePos = 0;
         this._state = "normal";
 
         this._slider.addEventListener("mousedown", (e) => {
+            e.preventDefault();
             this._state = "down";
-            this._currentMousePos = this._innerPos + e.x;
-            console.log(this._innerPos + " " + this._currentMousePos + " " + e.x + " " + (e.x-this._currentMousePos));
+            this._currentMousePos = e.x;
         });
 
         this._slider.addEventListener("mousemove", (e) => {
             e.preventDefault();
             if(this._state == "down" || this._state == "move") {
-                this.sliderMove(this._innerPos + (e.x - this._currentMousePos));
+                this._sliderMove(this._currentInnerPos + (e.x - this._currentMousePos));
                 this._state = "move";
-                console.log(this._innerPos + " " + this._currentMousePos + " " + e.x + " " + (e.x-this._currentMousePos));
+
+                if(this._currentInnerPos + (e.x - this._currentMousePos) < -(this._itemSize*(this._index + 1))) {
+                    this._index++;
+                    this._itemUpdate(this._index);
+                }
+                else if(this._currentInnerPos + (e.x - this._currentMousePos) > -(this._itemSize*(this._index - 1))) {
+                    if(this._index != 0)
+                    {
+                        this._index--;
+                        this._itemUpdate(this._index);
+                    }
+                }
+                console.log(this._currentInnerPos + " " + (this._currentInnerPos + (e.x - this._currentMousePos)) + " " + (this._itemSize*(this._index + 1)));
             }
         });
 
         this._slider.addEventListener("mouseup", (e) => {
+            e.preventDefault();
             this._state = "normal";
-            this._innerPos = e.x - this._currentMousePos;
-            console.log(this._innerPos + " " + this._currentMousePos + " " + e.x + " " + (e.x-this._currentMousePos));
+            this._currentInnerPos = this._currentInnerPos + (e.x - this._currentMousePos);
+            if(this._currentInnerPos >= 0) {
+                this._sliderMove(0);
+                this._currentInnerPos = 0;
+            }
+            else if(this._sliderPos() > this._innerSize) {
+                this._sliderMove(-(this._innerSize));
+                this._currentInnerPos = -(this._innerSize);
+            }
+            console.log(this._currentInnerPos + " " + (this._currentInnerPos + (e.x - this._currentMousePos)) + " " + (this._itemSize*(this._index + 1)));
         });
     }
 
-    sliderMove(pos) {
+    _sliderMove(pos) {
         this._sliderInner.style.transform = `translateX(${pos}px)`;
+    }
+
+    _sliderPos() {
+        let slider = this._slider.getBoundingClientRect();
+        let inner = this._sliderInner.getBoundingClientRect();
+
+        return slider.left - inner.left + this._itemSize;
+    }
+
+    _itemUpdate(index) {
+        if(index == 0) {
+            this._sliderItemList[index + 1].classList.remove("active");
+            this._sliderItemList[index].classList.add("active");
+        }
+        else if(index == this._sliderItemList.length - 1) {
+            this._sliderItemList[index-1].classList.remove("active");
+            this._sliderItemList[index].classList.add("active");
+        }
+        else {
+            this._sliderItemList[index-1].classList.remove("active");
+            this._sliderItemList[index+1].classList.remove("active");
+            this._sliderItemList[index].classList.add("active");
+        }
     }
 }
 
