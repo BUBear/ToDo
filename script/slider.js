@@ -34,7 +34,7 @@ export class Slider {
                         this._itemUpdate(this._index);
                     }
                 }
-                console.log(this._currentInnerPos + " " + (this._currentInnerPos + (e.x - this._currentMousePos)) + " " + (this._itemSize*(this._index + 1)));
+                //console.log(this._currentInnerPos + " " + (this._currentInnerPos + (e.x - this._currentMousePos)) + " " + (this._itemSize*(this._index + 1)));
             }
         });
 
@@ -50,7 +50,16 @@ export class Slider {
                 this._sliderMove(-(this._innerSize));
                 this._currentInnerPos = -(this._innerSize);
             }
-            console.log(this._currentInnerPos + " " + (this._currentInnerPos + (e.x - this._currentMousePos)) + " " + (this._itemSize*(this._index + 1)));
+            //console.log(this._currentInnerPos + " " + (this._currentInnerPos + (e.x - this._currentMousePos)) + " " + (this._itemSize*(this._index + 1)));
+        });
+
+        this._slider.addEventListener("mouseleave", (e) => {
+            e.preventDefault();
+            if(this._state == "move")
+            {
+                this._sliderResetPos();
+                this._state = "normal";
+            }
         });
     }
 
@@ -79,6 +88,12 @@ export class Slider {
             this._sliderItemList[index+1].classList.remove("active");
             this._sliderItemList[index].classList.add("active");
         }
+    }
+
+    _sliderResetPos() {
+        let move = (this._itemSize * this._index) + (4 * (this._index + 1)) + 2;
+        this._sliderMove(-move);
+        this._currentInnerPos = -move;
     }
 }
 
