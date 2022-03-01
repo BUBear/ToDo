@@ -93,9 +93,13 @@ function createAddModal() {
   label.setAttribute("for", "content");
   label.textContent = "내용";
 
-  let textarea = document.createElement("textarea");
+  // let textarea = document.createElement("textarea");
+  // textarea.id = "content";
+  let textarea = document.createElement("div");
   textarea.id = "content";
-
+  textarea.setAttribute("contenteditable","true");
+  textarea.setAttribute("placeholder","입력 해주세요.");
+  textarea.className = "content-box";
   label.appendChild(textarea);
 
   return label;

@@ -300,3 +300,28 @@ body {
 .modal textarea:focus {
     border-bottom: 2px solid #235B8C;
 }
+
+.modal .content-box {
+    position: relative;
+    outline: none;
+}
+
+.modal .content-box:after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    width: 0px;
+    height: 2px;
+    background-color: #0F1426;
+    transition: width 0.4s;
+    display: block;
+}
+
+.modal .content-box:focus:after {
+    width: 100%;
+}
+
+.modal .content-box:empty:before {
+    content: attr(placeholder);
+    color: gray;
+  }
