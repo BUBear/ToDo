@@ -15,7 +15,7 @@ export class ToDo
             this.toDoList[this.toDoList.length] = doList;
         }
         else {
-            throw Error("ToDoList 타입이 아닙니다.")
+            throw Error("ToDoList 타입이 아닙니다.");
         }
     }
 

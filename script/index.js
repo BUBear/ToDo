@@ -1,6 +1,7 @@
 import { Slider } from "./slider.js";
 import { ToDo, ToDoList } from "./list.js";
 import { Modal } from "./modal.js";
+import { Calendar } from "./calender.js";
 
 let todoList = null;
 
@@ -16,18 +17,11 @@ const toDo = new ToDo(
   window.localStorage
 );
 
-let doList = new ToDoList();
-doList.month = 1;
-doList.day = 1;
-doList.title = "테스트";
-doList.content = "테스트테스트테스트테스트테스트테스트";
-
-toDo.addItem(doList);
-toDo.update(1, 1);
-
+let calender = new Calendar();
+console.log(calender.monthCalenderArray(2022,3));
 try {
-  //toDo.listLoad();
-  //toDo.update(1, 1);
+  toDo.listLoad();
+  toDo.update(1, 1);
 } catch (e) {
   console.log(e.message);
   //
