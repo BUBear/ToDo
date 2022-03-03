@@ -39,7 +39,7 @@ export function Calendar()
         var startDay = this.dayOfWeek(year,month,1);
         var array = [];
         var dayCount = 1;
-        for(let i =0;i<this.monthDay[startDay].length;i++)
+        for(let i =0;i<this.monthDay[startDay];i++)
         {
             array[i] = dayCount++;
         }
@@ -51,7 +51,7 @@ export function Calendar()
         var array = [];
         var dayCount = 1;
         var count = startDay;
-        var row = (this.monthDay[month]+startDay)/7;
+        var row = (this.monthDay[month-1]+startDay)/7;
         for (let i = 0; i < row; i++)
         {
             array[i] = new Array(7);

@@ -1,68 +1,67 @@
 body {
-    margin: 0px;
+  margin: 0px;
 }
 
-
 .header {
-    background-color: #0F1426;
+  background-color: #0f1426;
 }
 
 .header .header-main {
-    font-size: 60px;
-    text-align: center;
-    padding-top: 80px;
-    color: #D9D9D9;
+  font-size: 60px;
+  text-align: center;
+  padding-top: 80px;
+  color: #d9d9d9;
 }
 
 .header .header-month {
-    padding-top: 50px;
-    font-size: 45px;
-    text-align: center;
-    color: #D9D9D9;
+  padding-top: 50px;
+  /* font-size: 45px; */
+  text-align: center;
+  color: #d9d9d9;
 }
 
 .header .header-day {
-    background-color: #0F1426;
-    /* margin: 0px auto; */
-    text-align: center;
+  background-color: #0f1426;
+  /* margin: 0px auto; */
+  text-align: center;
+  position: relative;
 }
 
 .slider {
-    list-style: none;
-    overflow: hidden;
-    width: 150px;
-    display: inline-block;
+  list-style: none;
+  overflow: hidden;
+  width: 150px;
+  display: inline-block;
 }
 
 .slider-inner {
-    position: relative;
-    white-space: nowrap;
-    font-size: 0px;
-    width: 750px;
-    left: 50px;
-    transition: transform 0.1s;
+  position: relative;
+  white-space: nowrap;
+  font-size: 0px;
+  width: 750px;
+  left: 50px;
+  transition: transform 0.1s;
 }
 
 .slider-inner .slider-item {
-    display: inline-block;
-    width: 50px;
-    line-height: 50px;
-    margin: 0px 2px;
-    font-size: 20px;
-    text-align: center;
-    background-color: #235B8C;
-    vertical-align: middle;
-    color: #D9D9D9;
-    border-radius: 5px;
+  display: inline-block;
+  width: 50px;
+  line-height: 50px;
+  margin: 0px 2px;
+  font-size: 20px;
+  text-align: center;
+  background-color: #235b8c;
+  vertical-align: middle;
+  color: #d9d9d9;
+  border-radius: 5px;
 }
 
 .slider-inner .slider-item.active {
-    width: 60px;
-    line-height: 60px;
-    font-size: 40px;
-    color: #D9D9D9;
+  width: 60px;
+  line-height: 60px;
+  font-size: 40px;
+  color: #d9d9d9;
 }
-
 
 /* .slider {
     width: 148px;
@@ -101,227 +100,284 @@ body {
 } */
 
 .slider-inner .active {
-    font-size: 30px;
-    color: #235B8C;
+  font-size: 30px;
+  color: #235b8c;
 }
 
 .add-btn {
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-bottom: 10px;
-    color: #0F1426;
-    font-size: 40px;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 10px;
+  color: #0f1426;
+  font-size: 40px;
 }
 
 .add-btn:hover {
-    font-size: 60px;
-    color: #235B8C;
+  font-size: 60px;
+  color: #235b8c;
 }
 
 /* content */
 .content {
-
 }
 
 /* content-todolist */
 
 .todo-list {
-    list-style: none;
-    padding: 0px;
-    margin: 10px auto 0px;
-    font-size: 0px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill,250px);
-    grid-auto-flow: dense;
-    gap: 10px;
+  list-style: none;
+  padding: 0px;
+  margin: 10px auto 0px;
+  font-size: 0px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 250px);
+  grid-auto-flow: dense;
+  gap: 10px;
 }
 
 .todo-list-item {
-    /* width: 250px; */
-    background-color: #D9D9D9;
-    border-radius: 5px;
-    display: inline-block;
-    font-size: 16px;
+  /* width: 250px; */
+  background-color: #d9d9d9;
+  border-radius: 5px;
+  display: inline-block;
+  font-size: 16px;
 }
 
 .todo-list-item:hover {
-    box-shadow: 3px 3px 15px #0F1426;
+  box-shadow: 3px 3px 15px #0f1426;
 }
 
 .todo-list-item .item-title {
-    color: #0F1426;
-    font-weight: bold;
-    padding: 5px 10px;
-    border-bottom: 2px solid #235B8C;
+  color: #0f1426;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-bottom: 2px solid #235b8c;
 }
 
 .todo-list-item .item-content {
-    color: #0F1426;
-    padding: 5px 10px;
-    word-wrap: break-word;
-    font-weight: bold;
+  color: #0f1426;
+  padding: 5px 10px;
+  word-wrap: break-word;
+  font-weight: bold;
 }
 
 .todo-list-item .item-tool {
-    padding: 5px 5px;
-    font-size: 0px;
-    text-align: center;
-    visibility: hidden;
+  padding: 5px 5px;
+  font-size: 0px;
+  text-align: center;
+  visibility: hidden;
 }
 
 .todo-list-item:hover > .item-tool {
-    visibility: visible;
+  visibility: visible;
 }
 
 .todo-list-item .item-tool i {
-    width: 48px;
-    height: 32px;
-    text-align: center;
-    line-height: 32px;
-    font-size: 16px;
-    display: inline-block;
+  width: 48px;
+  height: 32px;
+  text-align: center;
+  line-height: 32px;
+  font-size: 16px;
+  display: inline-block;
 }
 
 .todo-list-item .item-tool i:hover {
-    color: #235B8C;
+  color: #235b8c;
 }
 
 .todo-list-item-add {
-    width: 250px;
-    background-color: #d9d9d970;
-    border-radius: 5px;
-    margin: 10px 5px;
-    display: inline-block;
-    text-align: center;
-    vertical-align: top;
-    font-size: 16px;
+  width: 250px;
+  background-color: #d9d9d970;
+  border-radius: 5px;
+  margin: 10px 5px;
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
+  font-size: 16px;
 }
 
 .todo-list-item-add .item-add {
-    padding: 51px 104px;
-    color: #000000;
+  padding: 51px 104px;
+  color: #000000;
 }
 
-.todo-list-item-add .item-add:hover{
-    color: #235B8C;
+.todo-list-item-add .item-add:hover {
+  color: #235b8c;
 }
 
 /* modal */
 
 .modal {
-    width: 100%;
-    height: 100%;
-    top: 0;
-    position: fixed;
-    z-index: 1;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  position: fixed;
+  z-index: 1;
 }
 
 .hide {
-    display: none;
+  display: none;
 }
 
 .show {
-    display: block;
+  display: block;
 }
 
 .modal .modal-back {
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    opacity: 40%;
-    z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 40%;
+  z-index: 1;
 }
 
 .modal .modal-inner {
-    background-color: #D9D9D9;
-    width: 500px;
-    border-radius: 0px 0px 5px 5px;
-    margin: 0px auto;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    z-index: 2;
-    position: absolute;
-    box-shadow: 5px 5px 10px#0F1426;
+  background-color: #d9d9d9;
+  width: 500px;
+  border-radius: 0px 0px 5px 5px;
+  margin: 0px auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  position: absolute;
+  box-shadow: 5px 5px 10px#0F1426;
 }
 
 .modal .modal-inner .modal-title {
-    padding: 5px;
-    height: 30px;
-    line-height: 30px;
-    font-weight: bold;
-    color: white;
-    background-color: #235B8C;
-    border-bottom: 2px solid #235B8C;
-    text-align: center;
+  padding: 5px;
+  height: 30px;
+  line-height: 30px;
+  font-weight: bold;
+  color: white;
+  background-color: #235b8c;
+  border-bottom: 2px solid #235b8c;
+  text-align: center;
 }
 
 .modal .modal-inner .modal-body {
-    min-height: 100px;
-    word-wrap: break-word;
-    padding: 5px;
+  min-height: 100px;
+  word-wrap: break-word;
+  padding: 5px;
 }
 
 .modal .modal-inner .modal-footer {
-    min-height: 30px;
-    padding: 5px;
-    text-align: center;
+  min-height: 30px;
+  padding: 5px;
+  text-align: center;
 }
 
 .modal .modal-inner .modal-footer i {
-    width: 32px;
-    height: 32px;
-    text-align: center;
-    line-height: 32px;
-    margin: 0px 5px;
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  line-height: 32px;
+  margin: 0px 5px;
 }
 
 .modal .modal-inner .modal-footer i:hover {
-    color: #235B8C;
+  color: #235b8c;
 }
 
 .modal label {
-    display: block;
+  display: block;
 }
 
 .modal textarea {
-    min-width: 490px;
-    resize: none;
-    border: 0px;
-    padding: 0px;
-    background-color: transparent;
-    border-bottom: 2px solid #0F1426;
-    outline: none;
-    transition: border-bottom 0.5s;
+  min-width: 490px;
+  resize: none;
+  border: 0px;
+  padding: 0px;
+  background-color: transparent;
+  border-bottom: 2px solid #0f1426;
+  outline: none;
+  transition: border-bottom 0.5s;
 }
 
 .modal textarea:focus {
-    border-bottom: 2px solid #235B8C;
+  border-bottom: 2px solid #235b8c;
 }
 
 .modal .content-box {
-    position: relative;
-    outline: none;
+  position: relative;
+  outline: none;
 }
 
 .modal .content-box:after {
-    content: "";
-    position: absolute;
-    bottom: -5px;
-    width: 0px;
-    height: 2px;
-    background-color: #0F1426;
-    transition: width 0.4s;
-    display: block;
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  width: 0px;
+  height: 2px;
+  background-color: #0f1426;
+  transition: width 0.4s;
+  display: block;
 }
 
 .modal .content-box:focus:after {
-    width: 100%;
+  width: 100%;
 }
 
 .modal .content-box:empty:before {
-    content: attr(placeholder);
-    color: gray;
-  }
+  content: attr(placeholder);
+  color: gray;
+}
+
+/* comboBox(select) */
+
+.select {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  width: 60px;
+  margin: 0px auto;
+}
+
+.select-value {
+  width: 60px;
+  line-height: 60px;
+  font-size: 20px;
+  text-align: center;
+  background-color: #235b8c;
+  color: #d9d9d9;
+  border-radius: 5px;
+}
+
+.select .select-list {
+  position: absolute;
+  list-style: none;
+  padding: 0px;
+  margin: 5px 0px 0px 0px;
+  width: 100%;
+  height: 0px;
+  overflow-y: scroll;
+  text-align: center;
+  z-index: 2;
+  transition: height 0.5s;
+}
+
+.select.active .select-list {
+    height: 200px;
+}
+
+.select .select-list::-webkit-scrollbar {
+    display: none;
+}
+
+.select .select-list li {
+  line-height: 50px;
+  font-size: 20px;
+  text-align: center;
+  background-color: #235b8c;
+  color: #d9d9d9;
+  border-radius: 5px;
+}
+
+.select .select-list li:hover {
+    background-color: #0F1426;
+}
+
+.select .select-list li:nth-child(n+2) {
+    margin-top: 5px;
+}
