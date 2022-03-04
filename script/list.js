@@ -28,7 +28,7 @@ export class ToDo
     }
 
     update(month, day) {
-        //this.resetItme();
+        this.resetItme();
 
         this.toDoList.forEach(v => {
             if(v.month == month && v.day == day) {

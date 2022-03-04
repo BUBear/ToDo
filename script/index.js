@@ -26,8 +26,6 @@ sizeUpdate();
 window.addEventListener("resize", sizeUpdate);
 window.addEventListener("resize", masonryGridSizeUpdate);
 
-elementAddEvent();
-
 function elementAddEvent() {
   let list = todoList.getElementsByTagName("li");
   for (let i = 0; i < list.length; i++) {
@@ -42,7 +40,7 @@ function elementAddEvent() {
       modal.show();
       modal.addAcceptEvent("", ["content"], (e) => {
         toDo.itemUpdate(i, e.content.value);
-        toDo.update(1, 1);
+        toDo.update(month,day);
         elementAddEvent();
         modal.close();
       });
