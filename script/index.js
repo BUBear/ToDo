@@ -5,7 +5,10 @@ import { Calendar } from "./calender.js";
 
 window.onload = () => {};
 
-let todoList = document.querySelector(".todo-list");
+let slider = new Slider();
+slider.addEventListener("slidechange",(e)=>{
+  console.log(e.detail.index);
+});
 
 const toDo = new ToDo(document.querySelector(".todo-list"), window.localStorage);
 
