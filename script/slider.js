@@ -26,8 +26,8 @@ export class Slider {
                 if(this._currentInnerPos + (e.x - this._currentMousePos) < -(this._itemSize*(this._index + 1))) {
                     this._index++;
                     this._itemUpdate(this._index);
-                    this.dispatchEvent(new CustomEvent("slidechange",{
-                        detail: {index = this.index}
+                    this._slider.dispatchEvent(new CustomEvent("slidechange",{
+                        detail: {index : this.index}
                     }));
                 }
                 else if(this._currentInnerPos + (e.x - this._currentMousePos) > -(this._itemSize*(this._index - 1))) {
@@ -64,6 +64,10 @@ export class Slider {
                 this._state = "normal";
             }
         });
+    }
+
+    addChangeEvent(event) {
+        this._slider.addEventListener("slidechange",event);
     }
 
     _sliderMove(pos) {

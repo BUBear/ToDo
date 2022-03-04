@@ -6,13 +6,13 @@ import { Calendar } from "./calender.js";
 window.onload = () => {};
 
 let slider = new Slider();
-slider.addEventListener("slidechange",(e)=>{
+slider.addChangeEvent((e)=>{
   console.log(e.detail.index);
 });
 
-const toDo = new ToDo(document.querySelector(".todo-list"), window.localStorage);
+let todoList = document.querySelector(".todo-list");
+const toDo = new ToDo(todoList, window.localStorage);
 
-let slider = new Slider();
 let month = 1;
 let day = 1;
 let monthDay = [31,28,31,30,31,30,31,31,30,31,30,31];
