@@ -26,6 +26,9 @@ export class Slider {
                 if(this._currentInnerPos + (e.x - this._currentMousePos) < -(this._itemSize*(this._index + 1))) {
                     this._index++;
                     this._itemUpdate(this._index);
+                    this.dispatchEvent(new CustomEvent("slidechange",{
+                        detail: {index = this.index}
+                    }));
                 }
                 else if(this._currentInnerPos + (e.x - this._currentMousePos) > -(this._itemSize*(this._index - 1))) {
                     if(this._index != 0)
@@ -65,6 +68,10 @@ export class Slider {
 
     _sliderMove(pos) {
         this._sliderInner.style.transform = `translateX(${pos}px)`;
+    }
+
+    _sliderMoveTo(pos) {
+
     }
 
     _sliderPos() {

@@ -8,7 +8,9 @@ let todoList = null;
 window.onload = () => {};
 
 let slider = new Slider();
-console.log(slider._index);
+slider.addEventListener("slidechange",(e)=>{
+  console.log(e.detail.index);
+});
 
 todoList = document.querySelector(".todo-list");
 
