@@ -39,7 +39,7 @@ export class ToDo
         //this.createAddElement();
     }
 
-    createItem(doList) {
+    createItem(doList, editEvent, delEvent) {
         let itemE = document.createElement("li");
         itemE.classList.add("todo-list-item");
 
@@ -59,10 +59,12 @@ export class ToDo
         let editE = document.createElement("i");
         editE.classList.add("far");
         editE.classList.add("fa-edit");
+        editE.addEventListener("click",editEvent);
 
         let delE = document.createElement("i");
         delE.classList.add("far");
         delE.classList.add("fa-trash-alt");
+        delE.addEventListener("click",delEvent);
 
         toolE.appendChild(editE);
         toolE.appendChild(delE);

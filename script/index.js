@@ -10,6 +10,8 @@ let todoList = document.querySelector(".todo-list");
 const toDo = new ToDo(document.querySelector(".todo-list"), window.localStorage);
 
 let slider = new Slider();
+let month = 1;
+let day = 1;
 let monthDay = [31,28,31,30,31,30,31,31,30,31,30,31];
 
 try {
@@ -63,17 +65,19 @@ addBtn.addEventListener("click", () => {
   modal.show();
   modal.addAcceptEvent("", ["content"], (e) => {
     let doList = new ToDoList();
-    doList.month = 1;
-    doList.day = 1;
+    doList.month = month;
+    doList.day = day;
     doList.title = "테스트";
-    doList.content = e.content.value;
+    doList.content = e.content.textContent;
 
     toDo.addItem(doList);
-    toDo.update(1, 1);
+    //toDo.createItem(doList);
+    toDo.update(month,day);
     elementAddEvent();
     modal.close();
   });
 });
+
 
 function createAddModal() {
   let label = document.createElement("label");
@@ -173,6 +177,7 @@ selectOptions.forEach((e)=>{
     select.removeEventListener("mouseleave",selectAvtive);
     select.classList.remove("active");
     optionClick = true;
+    month = 1;
     toDo.update(e.textContent, 1);
   });
 });
