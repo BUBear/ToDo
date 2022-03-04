@@ -3,8 +3,6 @@ import { ToDo, ToDoList } from "./list.js";
 import { Modal } from "./modal.js";
 import { Calendar } from "./calender.js";
 
-let todoList = null;
-
 window.onload = () => {};
 
 let slider = new Slider();
@@ -12,15 +10,11 @@ slider.addEventListener("slidechange",(e)=>{
   console.log(e.detail.index);
 });
 
-todoList = document.querySelector(".todo-list");
+const toDo = new ToDo(document.querySelector(".todo-list"), window.localStorage);
 
-const toDo = new ToDo(
-  document.querySelector(".todo-list"),
-  window.localStorage
-);
+let slider = new Slider();
+let monthDay = [31,28,31,30,31,30,31,31,30,31,30,31];
 
-let calender = new Calendar();
-console.log(calender.monthCalenderArray(2022,3));
 try {
   toDo.listLoad();
   toDo.update(1, 1);
@@ -151,3 +145,37 @@ function masonryGridSizeUpdate() {
   //todoList.style.width = `${result + (10*result-1)}px`;
   grid.style.gridTemplateColumns = `repeat(${result},${width}px)`;
 }
+
+const select = document.querySelector(".select");
+const selectValue = document.querySelector(".select-value");
+const selectList = document.querySelector(".select-list");
+const selectOptions = document.querySelectorAll(".option");
+let optionClick = false;
+
+const selectAvtive = function() {
+
+  if(optionClick) {
+    optionClick = false;
+    select.addEventListener("mouseleave",selectAvtive);
+  }
+
+  if(select.classList.contains("active")) {
+    select.classList.remove("active");
+  }
+  else {
+    select.classList.add("active");
+  }
+}
+
+select.addEventListener("mouseenter",selectAvtive,)
+select.addEventListener("mouseleave",selectAvtive);
+
+selectOptions.forEach((e)=>{
+  e.addEventListener("click",() => {
+    selectValue.textContent = e.textContent+"월";
+    select.removeEventListener("mouseleave",selectAvtive);
+    select.classList.remove("active");
+    optionClick = true;
+    toDo.update(e.textContent, 1);
+  });
+});
