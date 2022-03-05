@@ -7,19 +7,34 @@ window.onload = () => {};
 
 let slider = new Slider();
 slider.addChangeEvent((e)=>{
-  console.log(e.detail.index);
+  day = e.detail.index+1;
+  toDo.update(month,day);
+  elementAddEvent();
 });
 
 let todoList = document.querySelector(".todo-list");
 const toDo = new ToDo(todoList, window.localStorage);
 
-let month = 1;
-let day = 1;
+const date = new Date();
+let month = date.getMonth() + 1;
+let day = date.getDate();
 let monthDay = [31,28,31,30,31,30,31,31,30,31,30,31];
+
+const slideinner = document.querySelector(".slider-inner");
+for(let i =0;i<=monthDay[month];i++) {
+  let item = document.createElement("div");
+  item.className = "slider-item";
+  item.textContent = i+1;
+  if (day == (i+1)) {
+    item.classList.add("active")
+  }
+  slideinner.appendChild(item);
+}
+slider.sliderMoveTo(day-1);
 
 try {
   toDo.listLoad();
-  toDo.update(1, 1);
+  toDo.update(month,day);
 } catch (e) {
   console.log(e.message);
   //
@@ -178,7 +193,7 @@ selectOptions.forEach((e)=>{
     select.removeEventListener("mouseleave",selectAvtive);
     select.classList.remove("active");
     optionClick = true;
-    month = 1;
-    toDo.update(e.textContent, 1);
+    toDo.update(e.textContent, date.getDate());
+    slider.sliderMoveTo(date.getDate()-1);
   });
 });

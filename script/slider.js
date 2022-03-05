@@ -23,36 +23,41 @@ export class Slider {
                 this._sliderMove(this._currentInnerPos + (e.x - this._currentMousePos));
                 this._state = "move";
 
-                if(this._currentInnerPos + (e.x - this._currentMousePos) < -(this._itemSize*(this._index + 1))) {
+                if(this._currentInnerPos + (e.x - this._currentMousePos) < -(this._itemSize*(this._index + 1)+(4*this._index))) {
                     this._index++;
                     this._itemUpdate(this._index);
                     this._slider.dispatchEvent(new CustomEvent("slidechange",{
-                        detail: {index : this.index}
+                        detail: {index : this._index}
                     }));
                 }
-                else if(this._currentInnerPos + (e.x - this._currentMousePos) > -(this._itemSize*(this._index - 1))) {
+                else if(this._currentInnerPos + (e.x - this._currentMousePos) > -(this._itemSize*(this._index)-25)) {
                     if(this._index != 0)
                     {
                         this._index--;
                         this._itemUpdate(this._index);
+                        this._slider.dispatchEvent(new CustomEvent("slidechange",{
+                            detail: {index : this._index}
+                        }));
                     }
                 }
-                //console.log(this._currentInnerPos + " " + (this._currentInnerPos + (e.x - this._currentMousePos)) + " " + (this._itemSize*(this._index + 1)));
+                //-(this._itemSize*(this._index)-(4*this._index))
+                console.log(this._currentInnerPos + (e.x - this._currentMousePos) + " " + -(this._itemSize*(this._index)-20));
             }
         });
 
         this._slider.addEventListener("mouseup", (e) => {
             e.preventDefault();
             this._state = "normal";
-            this._currentInnerPos = this._currentInnerPos + (e.x - this._currentMousePos);
-            if(this._currentInnerPos >= 0) {
-                this._sliderMove(0);
-                this._currentInnerPos = 0;
-            }
-            else if(this._sliderPos() > this._innerSize) {
-                this._sliderMove(-(this._innerSize));
-                this._currentInnerPos = -(this._innerSize);
-            }
+            //this._currentInnerPos = this._currentInnerPos + (e.x - this._currentMousePos);
+            this.sliderMoveTo(this._index);
+            // if(this._currentInnerPos >= 0) {
+            //     this._sliderMove(0);
+            //     this._currentInnerPos = 0;
+            // }
+            // else if(this._sliderPos() > -this._innerSize) {
+            //     this._sliderMove(-(this._innerSize));
+            //     this._currentInnerPos = -(this._innerSize);
+            // }
             //console.log(this._currentInnerPos + " " + (this._currentInnerPos + (e.x - this._currentMousePos)) + " " + (this._itemSize*(this._index + 1)));
         });
 
@@ -61,8 +66,8 @@ export class Slider {
             if(this._state == "move")
             {
                 this._sliderResetPos();
-                this._state = "normal";
             }
+            this._state = "normal";
         });
     }
 
@@ -74,8 +79,12 @@ export class Slider {
         this._sliderInner.style.transform = `translateX(${pos}px)`;
     }
 
-    _sliderMoveTo(pos) {
-
+    sliderMoveTo(index) {
+        this._index = index;
+        let move = (this._itemSize * (this._index)) + (4 * (this._index+1)) + 2;
+        this._sliderMove(-move);
+        this._itemUpdate(this._index);
+        this._currentInnerPos = -move;
     }
 
     _sliderPos() {
