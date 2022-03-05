@@ -19,6 +19,7 @@ const date = new Date();
 let month = date.getMonth() + 1;
 let day = date.getDate();
 let monthDay = [31,28,31,30,31,30,31,31,30,31,30,31];
+let modal = null;
 
 const slideinner = document.querySelector(".slider-inner");
 for(let i =0;i<=monthDay[month];i++) {
@@ -35,6 +36,7 @@ slider.sliderMoveTo(day-1);
 try {
   toDo.listLoad();
   toDo.update(month,day);
+  elementAddEvent();
 } catch (e) {
   console.log(e.message);
   //
@@ -52,9 +54,10 @@ function elementAddEvent() {
     let edit = temp.item(0);
     let del = temp.item(1);
     //let modal = new Modal("변경", createEditModal(toDo.getItem(i).content));
-    let modal = new Modal("변경", createEditModal(""));
+    //let modal = new Modal("변경", createEditModal(""));
 
     edit.addEventListener("click", () => {
+      modal = new Modal("변경", createEditModal(""));
       modal.show();
       modal.addAcceptEvent("", ["content"], (e) => {
         toDo.itemUpdate(i, e.content.value);
@@ -66,9 +69,9 @@ function elementAddEvent() {
 
     del.addEventListener("click", () => {
       toDo.removeItem(i);
-      toDo.update(1, 1);
+      toDo.update(month,day);
       elementAddEvent();
-      modal.close();
+      //modal.close();
     });
     break;
   }
@@ -169,6 +172,8 @@ const selectList = document.querySelector(".select-list");
 const selectOptions = document.querySelectorAll(".option");
 let optionClick = false;
 
+selectValue.textContent = month+"월";
+
 const selectAvtive = function() {
 
   if(optionClick) {
@@ -184,7 +189,7 @@ const selectAvtive = function() {
   }
 }
 
-select.addEventListener("mouseenter",selectAvtive,)
+select.addEventListener("mouseenter",selectAvtive);
 select.addEventListener("mouseleave",selectAvtive);
 
 selectOptions.forEach((e)=>{
@@ -192,8 +197,10 @@ selectOptions.forEach((e)=>{
     selectValue.textContent = e.textContent+"월";
     select.removeEventListener("mouseleave",selectAvtive);
     select.classList.remove("active");
+    month = e.textContent;
     optionClick = true;
     toDo.update(e.textContent, date.getDate());
+    elementAddEvent();
     slider.sliderMoveTo(date.getDate()-1);
   });
 });

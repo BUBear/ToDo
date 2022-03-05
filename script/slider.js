@@ -41,7 +41,7 @@ export class Slider {
                     }
                 }
                 //-(this._itemSize*(this._index)-(4*this._index))
-                console.log(this._currentInnerPos + (e.x - this._currentMousePos) + " " + -(this._itemSize*(this._index)-20));
+                //console.log(this._currentInnerPos + (e.x - this._currentMousePos) + " " + -(this._itemSize*(this._index)-20));
             }
         });
 

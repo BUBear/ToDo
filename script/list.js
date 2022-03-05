@@ -34,7 +34,7 @@ export class ToDo
             if(v.month == month && v.day == day) {
                 this.createItem(v);
             }
-        })
+        });
 
         //this.createAddElement();
     }
@@ -104,7 +104,7 @@ export class ToDo
             this.toDoList = convertData;
         }
         else {
-            throw Error("저장된 리스트가 없습니다.")
+            throw Error("저장된 리스트가 없습니다.");
         }
     }
     
