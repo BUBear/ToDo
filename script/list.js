@@ -21,17 +21,19 @@ export class ToDo
 
     removeItem(index) {
         this.toDoList.splice(index,1);
+        this.listSave();
     }
 
     itemUpdate(index, content) {
-        this.getItem(index).content = content;
+        this.getItem(index)._content = content;
+        this.listSave();
     }
 
     update(month, day) {
         this.resetItme();
 
         this.toDoList.forEach(v => {
-            if(v.month == month && v.day == day) {
+            if(v._month == month && v._day == day) {
                 this.createItem(v);
             }
         });
@@ -50,7 +52,7 @@ export class ToDo
 
         let contentE = document.createElement("div");
         contentE.classList.add("item-content");
-        contentE.textContent = doList.content;
+        contentE.textContent = doList._content;
         itemE.appendChild(contentE);
 
         let toolE = document.createElement("div");
@@ -97,11 +99,16 @@ export class ToDo
         }
     }
 
-    listLoad() {
+    listLoad(month) {
         let data = this.local.getItem("todolist");
         if(data != null) {
             let convertData = JSON.parse(data);
-            this.toDoList = convertData;
+            convertData.forEach((v) => {
+                if(v._month == month) {
+                    this.toDoList.push(v);
+                }
+            })
+            //this.toDoList = convertData;
         }
         else {
             throw Error("저장된 리스트가 없습니다.");

@@ -34,7 +34,7 @@ for(let i =0;i<=monthDay[month];i++) {
 slider.sliderMoveTo(day-1);
 
 try {
-  toDo.listLoad();
+  toDo.listLoad(month);
   toDo.update(month,day);
   elementAddEvent();
 } catch (e) {
@@ -57,10 +57,10 @@ function elementAddEvent() {
     //let modal = new Modal("변경", createEditModal(""));
 
     edit.addEventListener("click", () => {
-      modal = new Modal("변경", createEditModal(""));
+      modal = new Modal("변경", createEditModal(toDo.getItem(i).content));
       modal.show();
       modal.addAcceptEvent("", ["content"], (e) => {
-        toDo.itemUpdate(i, e.content.value);
+        toDo.itemUpdate(i, e.content.textContent);
         toDo.update(month,day);
         elementAddEvent();
         modal.close();
@@ -73,7 +73,6 @@ function elementAddEvent() {
       elementAddEvent();
       //modal.close();
     });
-    break;
   }
 }
 
@@ -120,9 +119,14 @@ function createEditModal(content) {
   label.setAttribute("for", "content");
   label.textContent = "내용";
 
-  let textarea = document.createElement("textarea");
+  // let textarea = document.createElement("textarea");
+  // textarea.id = "content";
+  // textarea.value = content;
+  let textarea = document.createElement("div");
   textarea.id = "content";
-  textarea.value = content;
+  textarea.setAttribute("contenteditable","true");
+  textarea.setAttribute("placeholder","입력 해주세요.");
+  textarea.className = "content-box";
 
   label.appendChild(textarea);
 
