@@ -131,7 +131,7 @@ export class ToDo
                 }
                 this.toDoList.forEach(v => {
                     oldData.push(v);
-                })
+                });
                 this.local.setItem("todolist",JSON.stringify(oldData));
             }
             else {
