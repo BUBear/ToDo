@@ -7,7 +7,9 @@ window.onload = () => {};
 
 let slider = new Slider();
 slider.addChangeEvent((e)=>{
+  toDo.listSave(month);
   day = e.detail.index+1;
+  toDo.listLoad(month);
   toDo.update(month,day);
   elementAddEvent();
 });
@@ -16,6 +18,7 @@ let todoList = document.querySelector(".todo-list");
 const toDo = new ToDo(todoList, window.localStorage);
 
 const date = new Date();
+let oldMonth = 0;
 let month = date.getMonth() + 1;
 let day = date.getDate();
 let monthDay = [31,28,31,30,31,30,31,31,30,31,30,31];
@@ -27,7 +30,7 @@ for(let i =0;i<=monthDay[month];i++) {
   item.className = "slider-item";
   item.textContent = i+1;
   if (day == (i+1)) {
-    item.classList.add("active")
+    item.classList.add("active");
   }
   slideinner.appendChild(item);
 }
@@ -57,10 +60,11 @@ function elementAddEvent() {
     //let modal = new Modal("변경", createEditModal(""));
 
     edit.addEventListener("click", () => {
-      modal = new Modal("변경", createEditModal(toDo.getItem(i).content));
+      modal = new Modal("변경", createEditModal(toDo.getItem(i)._content));
       modal.show();
       modal.addAcceptEvent("", ["content"], (e) => {
         toDo.itemUpdate(i, e.content.textContent);
+        toDo.listSave(month);
         toDo.update(month,day);
         elementAddEvent();
         modal.close();
@@ -69,6 +73,7 @@ function elementAddEvent() {
 
     del.addEventListener("click", () => {
       toDo.removeItem(i);
+      toDo.listSave(month);
       toDo.update(month,day);
       elementAddEvent();
       //modal.close();
@@ -89,6 +94,7 @@ addBtn.addEventListener("click", () => {
     doList.content = e.content.textContent;
 
     toDo.addItem(doList);
+    toDo.listSave(month);
     //toDo.createItem(doList);
     toDo.update(month,day);
     elementAddEvent();
@@ -127,7 +133,7 @@ function createEditModal(content) {
   textarea.setAttribute("contenteditable","true");
   textarea.setAttribute("placeholder","입력 해주세요.");
   textarea.className = "content-box";
-
+  textarea.textContent = content;
   label.appendChild(textarea);
 
   return label;
@@ -201,8 +207,11 @@ selectOptions.forEach((e)=>{
     selectValue.textContent = e.textContent+"월";
     select.removeEventListener("mouseleave",selectAvtive);
     select.classList.remove("active");
+    oldMonth = month;
     month = e.textContent;
     optionClick = true;
+    toDo.listSave(oldMonth);
+    toDo.listLoad(month);
     toDo.update(e.textContent, date.getDate());
     elementAddEvent();
     slider.sliderMoveTo(date.getDate()-1);
