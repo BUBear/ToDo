@@ -9,6 +9,7 @@ let slider = new Slider();
 slider.addChangeEvent((e)=>{
   toDo.listSave(month);
   day = e.detail.index+1;
+  toDo.listLoad(month);
   toDo.update(month,day);
   elementAddEvent();
 });
@@ -17,6 +18,7 @@ let todoList = document.querySelector(".todo-list");
 const toDo = new ToDo(todoList, window.localStorage);
 
 const date = new Date();
+let oldMonth = 0;
 let month = date.getMonth() + 1;
 let day = date.getDate();
 let monthDay = [31,28,31,30,31,30,31,31,30,31,30,31];
@@ -205,9 +207,11 @@ selectOptions.forEach((e)=>{
     selectValue.textContent = e.textContent+"월";
     select.removeEventListener("mouseleave",selectAvtive);
     select.classList.remove("active");
+    oldMonth = month;
     month = e.textContent;
     optionClick = true;
-    toDo.listSave(month);
+    toDo.listSave(oldMonth);
+    toDo.listLoad(month);
     toDo.update(e.textContent, date.getDate());
     elementAddEvent();
     slider.sliderMoveTo(date.getDate()-1);

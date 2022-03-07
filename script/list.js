@@ -102,6 +102,7 @@ export class ToDo
     }
 
     listLoad(month) {
+        this.toDoList = [];
         let data = JSON.parse(this.local.getItem("todolist"));
         if(data != null) {
             //let convertData = JSON.parse(data);
