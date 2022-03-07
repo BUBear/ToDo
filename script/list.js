@@ -21,16 +21,18 @@ export class ToDo
 
     removeItem(index) {
         this.toDoList.splice(index,1);
-        this.listSave();
     }
 
     itemUpdate(index, content) {
         this.getItem(index)._content = content;
-        this.listSave();
     }
 
     update(month, day) {
         this.resetItme();
+
+        if(this.toDoList == null) {
+            return;
+        }
 
         this.toDoList.forEach(v => {
             if(v._month == month && v._day == day) {
@@ -100,10 +102,11 @@ export class ToDo
     }
 
     listLoad(month) {
-        let data = this.local.getItem("todolist");
+        this.toDoList = [];
+        let data = JSON.parse(this.local.getItem("todolist"));
         if(data != null) {
-            let convertData = JSON.parse(data);
-            convertData.forEach((v) => {
+            //let convertData = JSON.parse(data);
+            data.forEach((v) => {
                 if(v._month == month) {
                     this.toDoList.push(v);
                 }
@@ -115,9 +118,26 @@ export class ToDo
         }
     }
     
-    listSave() {
+    listSave(month) {
         try {
-            this.local.setItem("todolist",JSON.stringify(this.toDoList));
+            let oldData = JSON.parse(this.local.getItem("todolist"));
+            if(oldData != null) {
+                let data = JSON.stringify(this.toDoList);
+
+                for(let i=0;i<oldData.length;i++) {
+                    if(oldData[i]._month == month) {
+                        oldData.splice(i,1);
+                        i--;
+                    }
+                }
+                this.toDoList.forEach(v => {
+                    oldData.push(v);
+                });
+                this.local.setItem("todolist",JSON.stringify(oldData));
+            }
+            else {
+                this.local.setItem("todolist",JSON.stringify(this.toDoList));
+            }
         }
         catch (e) {
             console.error(e);
