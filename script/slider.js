@@ -27,7 +27,7 @@ export class Slider {
                     this._index++;
                     this._itemUpdate(this._index);
                     this._slider.dispatchEvent(new CustomEvent("slidechange",{
-                        detail: {index : this._index}
+                        detail: {index : this._index , oldIndex : this._index-1}
                     }));
                 }
                 else if(this._currentInnerPos + (e.x - this._currentMousePos) > -(this._itemSize*(this._index)-25)) {
